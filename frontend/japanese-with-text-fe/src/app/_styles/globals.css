@@ -2,6 +2,7 @@
 	--white: #FFFF;
 	--yellow: #FFE135;
 	--pink: #ED64D8;
+	--faded-pink: #BA9BB1;
 	--sky-blue: #6495ED;
 	--shadow-blue: #1650BB;
 	--lighter-blue: #BFD3F8;
@@ -47,8 +48,12 @@ button {
 	filter: drop-shadow(4px 2px 2px var(--shadow-blue));
 }
 
-.action-button:hover {
+.action-button:enabled:hover {
 	animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+.action-button:disabled{
+	background-color: var(--faded-pink);
 }
 
 @keyframes shake {

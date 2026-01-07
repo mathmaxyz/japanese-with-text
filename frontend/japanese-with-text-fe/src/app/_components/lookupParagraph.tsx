@@ -6,7 +6,7 @@ import Word from "./Word";
 export default async function LookupParagraph({ chunk, lookupData }: { chunk: string, lookupData: LookupResponse }) {
 	let data = lookupData;
 	let definedWords: DefinedWord[] = [];
-	if (data !== null) {
+	if (data !== null && data.defined_words !== null) {
 		definedWords = data.defined_words;
 	} else {
 		data = await lookupText(chunk);
