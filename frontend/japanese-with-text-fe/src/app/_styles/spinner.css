@@ -1,40 +1,20 @@
-.bouncer {
-	display: flex;
-	justify-content: space-around;
-	align-items: flex-end;
-	width: 100px;
-	height: 100px;
+/*
+Source - https://stackoverflow.com/a
+Posted by touko, modified by community. See post 'Timeline' for change history
+Retrieved 2025-12-29, License - CC BY-SA 3.0
+*/
+
+@keyframes flickerAnimation {
+  0%   { opacity:1; }
+  30%  { opacity:0.5; }
+  60%  { opacity:0; }
+  90%  { opacity:0.5 }
+  100% { opacity:1; }
 }
 
-.bouncer div {
-	width: 20px;
-	height: 20px;
-	background: var(--yellow);
-	border-radius: 50%;
-	animation: bouncer 0.5s cubic-bezier(.19, .57, .3, .98) infinite alternate;
+.suspense-paragraph{
+	margin: 10px;
+	background: rgba(195, 205, 232, 0.47);
+    animation: flickerAnimation 1.5s ease-in-out infinite;
 }
 
-.bouncer div:nth-child(2) {
-	animation-delay: 0.1s;
-	opacity: 0.8;
-}
-
-.bouncer div:nth-child(3) {
-	animation-delay: 0.2s;
-	opacity: 0.6;
-}
-
-.bouncer div:nth-child(4) {
-	animation-delay: 0.3s;
-	opacity: 0.4;
-}
-
-@keyframes bouncer {
-	from {
-		transform: translateY(0)
-	}
-
-	to {
-		transform: translateY(-100px)
-	}
-}

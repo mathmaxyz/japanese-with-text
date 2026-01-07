@@ -27,7 +27,7 @@ export default async function AnalysisPage({
 			<section className="analyzed-text">
 				<LookupParagraph chunk={chunks[0]} lookupData={firstLookup} />
 				{chunks.slice(1).map((chunk: string, index: number) => (
-					<Suspense key={index} fallback={<Spinner />}>
+					<Suspense key={index} fallback={<Spinner text={chunk} />}>
 						<LookupParagraph chunk={chunk} lookupData={null} />
 					</Suspense>
 				))}

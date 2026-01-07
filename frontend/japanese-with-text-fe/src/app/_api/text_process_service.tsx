@@ -48,8 +48,6 @@ class TextProcessService extends Base_api {
 const service = new TextProcessService()
 
 export async function lookupText(text: string): Promise<LookupResponse> {
-	console.log("boogie boogie bogies")
-	await new Promise(resolve => setTimeout(resolve, 100000));
 	return service.get_lookup(text)
 }
 
