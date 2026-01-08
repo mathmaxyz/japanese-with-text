@@ -4,17 +4,9 @@ Posted by touko, modified by community. See post 'Timeline' for change history
 Retrieved 2025-12-29, License - CC BY-SA 3.0
 */
 
-@keyframes flickerAnimation {
-  0%   { opacity:1; }
-  30%  { opacity:0.5; }
-  60%  { opacity:0; }
-  90%  { opacity:0.5 }
-  100% { opacity:1; }
-}
 
 .suspense-paragraph{
 	margin: 10px;
 	background: rgba(195, 205, 232, 0.47);
-    animation: flickerAnimation 1.5s ease-in-out infinite;
 }
 

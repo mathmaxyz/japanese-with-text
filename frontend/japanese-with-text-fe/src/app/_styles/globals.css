@@ -85,3 +85,16 @@ button {
 	width: 100vw;
 	height: 80vh;
 }
+
+
+@keyframes loadingAnimation {
+  0%   { opacity:1; }
+  30%  { opacity:0.7; }
+  60%  { opacity:0.3; }
+  90%  { opacity:0.7 }
+  100% { opacity:1; }
+}
+
+.loading {
+    animation: loadingAnimation 1.5s ease-in-out infinite;
+}
