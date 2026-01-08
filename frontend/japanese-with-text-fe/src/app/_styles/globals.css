@@ -6,6 +6,8 @@
 	--sky-blue: #6495ED;
 	--shadow-blue: #1650BB;
 	--lighter-blue: #BFD3F8;
+	--mid-blue: #5673B3;
+	--orange: #E88817;
 }
 
 body {
@@ -54,6 +56,10 @@ button {
 
 .action-button:disabled{
 	background-color: var(--faded-pink);
+}
+
+.translate-icon{
+	filter: drop-shadow(2px 1px 2px var(--shadow-blue));
 }
 
 @keyframes shake {

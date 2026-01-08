@@ -20,3 +20,11 @@
 	margin: 10px;
 	background: rgba(195, 205, 232, 0.47);
 }
+
+.translate-button{
+	width: 30px;
+	height: 30px;
+	background: none;
+	font-size: 12px;
+	padding: 0px;
+}

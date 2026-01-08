@@ -1,6 +1,7 @@
 import { lookupText } from "../_api/text_process_service"
 import DefinedWord from "../_types/definedWord";
 import LookupResponse from "../_types/lookupResponse";
+import TranslateIcon from "./translateIcon";
 import Word from "./Word";
 
 export default async function LookupParagraph({ chunk, lookupData }: { chunk: string, lookupData: LookupResponse }) {
@@ -19,5 +20,8 @@ export default async function LookupParagraph({ chunk, lookupData }: { chunk: st
 				<Word key={index} definedWord={word}></Word>
 			))
 		}
+		<button className="translate-button" disabled={false}>
+			<TranslateIcon></TranslateIcon>
+		</button>
 	</div>)
 }
