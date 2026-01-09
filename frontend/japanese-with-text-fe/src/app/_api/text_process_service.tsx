@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import Base_api from "./base_api";
 import { saveData } from "../_cache/cache";
 import LookupResponse from "../_types/lookupResponse";
+import TranslateResponse from "../_types/translateResponse";
 
 const BASE_URL = process.env.API_URL
 
@@ -28,7 +29,7 @@ class TextProcessService extends Base_api {
 		return this.do_request(request, "Unable to lookup text")
 	}
 
-	async get_translation(text: string[]) {
+	async get_translation(text: string[]): Promise<TranslateResponse> {
 		const url = `${BASE_URL}/translate-text`
 
 		const request = new Request(
@@ -78,4 +79,8 @@ export async function analyzeText(formData: FormData) {
 	const id = await saveData(data)
 
 	redirect(`/analyze?analysis=${id}`)
+}
+
+export async function translateText(text: string): Promise<TranslateResponse> {
+	return await service.get_translation([text]);
 }

@@ -1,10 +1,11 @@
 import { lookupText } from "../_api/text_process_service"
 import DefinedWord from "../_types/definedWord";
 import LookupResponse from "../_types/lookupResponse";
-import TranslateIcon from "./translateIcon";
 import Word from "./Word";
+import TranslateButton from "./translateButton";
 
-export default async function LookupParagraph({ chunk, lookupData }: { chunk: string, lookupData: LookupResponse }) {
+export default async function LookupParagraph({ chunkId, chunk, lookupData }: { chunkId: number, chunk: string, lookupData: LookupResponse }) {
+
 	let data = lookupData;
 	let definedWords: DefinedWord[] = [];
 	if (data !== null && data.defined_words !== null) {
@@ -14,14 +15,13 @@ export default async function LookupParagraph({ chunk, lookupData }: { chunk: st
 		definedWords = data ? data.defined_words : [];
 	}
 
+
 	return (<div className="lookup-paragraph">
 		{
 			definedWords.map((word: DefinedWord, index: number) => (
 				<Word key={index} definedWord={word}></Word>
 			))
 		}
-		<button className="translate-button" disabled={false}>
-			<TranslateIcon></TranslateIcon>
-		</button>
+		<TranslateButton chunkId={chunkId} chunk={chunk} />
 	</div>)
 }
