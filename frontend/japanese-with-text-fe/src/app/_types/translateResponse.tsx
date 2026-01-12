@@ -1,3 +1,3 @@
 export default interface TranslateResponse {
-	translated_words: string[];
+	translated_text: string[];
 }

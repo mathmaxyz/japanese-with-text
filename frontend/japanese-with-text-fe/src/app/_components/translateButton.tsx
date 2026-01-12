@@ -1,10 +1,27 @@
 'use client'
 import { translateText } from "../_api/text_process_service";
 
-export default function TranslateButton({ chunkId, chunk }: { chunkId: number, chunk: string }) {
+export default function TranslateButton({
+	chunkId,
+	chunk,
+	onTranslationStart,
+	onTranslationComplete }: {
+		chunkId: number,
+		chunk: string,
+		onTranslationStart: () => void,
+		onTranslationComplete: (translation: string) => void
+	}) {
 
-	const handleTranslate = () => {
-
+	const handleTranslate = async () => {
+		console.log("translating")
+		onTranslationStart();
+		try {
+			const translation = await translateText(chunk);
+			console.log("here")
+			onTranslationComplete(translation);
+		} catch (error) {
+			console.error("Translation failed:", error);
+		}
 
 	}
 

@@ -1,0 +1,52 @@
+'use client'
+import { useState } from "react";
+import DefinedWord from "../_types/definedWord";
+import Word from "./Word";
+import TranslateButton from "./translateButton";
+
+export default function LookupParagraphContent({
+	chunkId,
+	chunk,
+	definedWords
+}: {
+	chunkId: number,
+	chunk: string,
+	definedWords: DefinedWord[]
+}) {
+	const [translation, setTranslation] = useState<string | null>(null);
+	const [isTranslating, setIsTranslating] = useState(false);
+
+	const handleTranslationFetched = (translatedText: string) => {
+		setTranslation(translatedText);
+		console.log("translation: " + translation);
+		setIsTranslating(false);
+	};
+
+	const handleTranslationStart = () => {
+		setIsTranslating(true);
+	};
+
+	return (
+		<div className="lookup-paragraph">
+			{definedWords.map((word: DefinedWord, index: number) => (
+				<Word key={index} definedWord={word}></Word>
+			))}
+			<TranslateButton
+				chunkId={chunkId}
+				chunk={chunk}
+				onTranslationStart={handleTranslationStart}
+				onTranslationComplete={handleTranslationFetched}
+			/>
+			{isTranslating && (
+				<div className="translation-loading">
+					Translating...
+				</div>
+			)}
+			{translation && (
+				<div className="translation-result">
+					{translation}
+				</div>
+			)}
+		</div>
+	);
+}

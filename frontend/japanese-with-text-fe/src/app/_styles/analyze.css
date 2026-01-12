@@ -33,3 +33,14 @@
 	filter: drop-shadow(2px 1px 2px var(--shadow-blue));
 }
 
+.translation-loading {
+	font-family: var(--font-space-mono);
+	color: var(--shadow-blue);
+	padding: 5px;
+}
+
+.translation-result {
+	font-family: var(--font-space-mono);
+	color: var(--shadow-blue);
+	padding: 5px;
+}
