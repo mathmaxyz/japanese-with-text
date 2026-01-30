@@ -5,24 +5,29 @@ export default function TranslateButton({
 	chunkId,
 	chunk,
 	onTranslationStart,
-	onTranslationComplete }: {
+	onTranslationComplete,
+	translation }: {
 		chunkId: number,
 		chunk: string,
 		onTranslationStart: () => void,
-		onTranslationComplete: (translation: string) => void
+		onTranslationComplete: (translation: string) => void,
+		translation: string
 	}) {
 
 	const handleTranslate = async () => {
-		console.log("translating")
-		onTranslationStart();
-		try {
-			const translation = await translateText(chunk);
-			console.log("here")
-			onTranslationComplete(translation);
-		} catch (error) {
-			console.error("Translation failed:", error);
-		}
+		console.log(translation);
+		if (!translation) {
+			onTranslationStart();
+			try {
+				const translation = await translateText(chunk);
+				onTranslationComplete(translation);
 
+			} catch (error) {
+				console.error("Translation failed:", error);
+			}
+		} else {
+			onTranslationComplete(translation);
+		}
 	}
 
 	return (

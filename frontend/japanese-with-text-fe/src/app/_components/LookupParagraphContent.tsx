@@ -14,12 +14,13 @@ export default function LookupParagraphContent({
 	definedWords: DefinedWord[]
 }) {
 	const [translation, setTranslation] = useState<string | null>(null);
-	const [isTranslating, setIsTranslating] = useState(false);
+	const [isTranslating, setIsTranslating] = useState<boolean>(false);
+	const [showTranslation, setShowTranslation] = useState<boolean>(false);
 
 	const handleTranslationFetched = (translatedText: string) => {
 		setTranslation(translatedText);
-		console.log("translation: " + translation);
 		setIsTranslating(false);
+		setShowTranslation(!showTranslation);
 	};
 
 	const handleTranslationStart = () => {
@@ -36,13 +37,15 @@ export default function LookupParagraphContent({
 				chunk={chunk}
 				onTranslationStart={handleTranslationStart}
 				onTranslationComplete={handleTranslationFetched}
+				translation={translation}
+
 			/>
 			{isTranslating && (
 				<div className="translation-loading">
 					Translating...
 				</div>
 			)}
-			{translation && (
+			{(translation && showTranslation) && (
 				<div className="translation-result">
 					{translation}
 				</div>
