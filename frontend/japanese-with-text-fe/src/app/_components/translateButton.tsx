@@ -1,5 +1,5 @@
 'use client'
-import { forwardRef } from 'react';
+import { useState, forwardRef } from 'react';
 import { translateText } from "../_api/text_process_service";
 
 const TranslateButton = forwardRef<HTMLButtonElement, {
@@ -11,12 +11,16 @@ const TranslateButton = forwardRef<HTMLButtonElement, {
 	translation: string
 }>(({ chunkId, chunk, onTranslationStart, onTranslationComplete, showTranslation, translation }, ref) => {
 
+	const [isTranslating, setIsTranslating] = useState<boolean>(false);
+
 	const handleTranslate = async () => {
 		if (!translation) {
+			setIsTranslating(true);
 			onTranslationStart();
 			try {
 				const translation = await translateText(chunk);
 				onTranslationComplete(translation);
+				setIsTranslating(false);
 
 			} catch (error) {
 				console.error("Translation failed:", error);
@@ -27,7 +31,7 @@ const TranslateButton = forwardRef<HTMLButtonElement, {
 	}
 
 	return (
-		<button ref={ref} className="translate-button" disabled={false} onClick={handleTranslate}>
+		<button ref={ref} className={isTranslating ? "translate-button loading" : "translate-button"} disabled={false} onClick={handleTranslate}>
 			<svg className={showTranslation ? "translate-icon-invisible" : "translate-icon"} width="100%" height="100%" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 				<rect x="0" fill="none" width="20" height="20" />
 				<>

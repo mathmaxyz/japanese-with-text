@@ -14,7 +14,6 @@ export default function LookupParagraphContent({
 	definedWords: DefinedWord[]
 }) {
 	const [translation, setTranslation] = useState<string | null>(null);
-	const [isTranslating, setIsTranslating] = useState<boolean>(false);
 	const [showTranslation, setShowTranslation] = useState<boolean>(false);
 	const buttonRef = useRef<HTMLButtonElement>(null);
 	const [arrowLeft, setArrowLeft] = useState(0);
@@ -24,19 +23,13 @@ export default function LookupParagraphContent({
 			const rect = buttonRef.current.getBoundingClientRect();
 			const parentRect = buttonRef.current.offsetParent?.getBoundingClientRect();
 			const calculatedLeft = rect.left - (parentRect?.left || 0) + rect.width / 2;
-			console.log('arrowLeft:', calculatedLeft, 'rect:', rect, 'parentRect:', parentRect);
 			setArrowLeft(calculatedLeft);
 		}
 	}, [showTranslation]);
 
 	const handleTranslationFetched = (translatedText: string) => {
 		setTranslation(translatedText);
-		setIsTranslating(false);
 		setShowTranslation(!showTranslation);
-	};
-
-	const handleTranslationStart = () => {
-		setIsTranslating(true);
 	};
 
 	return (
@@ -48,16 +41,10 @@ export default function LookupParagraphContent({
 				ref={buttonRef}
 				chunkId={chunkId}
 				chunk={chunk}
-				onTranslationStart={handleTranslationStart}
 				onTranslationComplete={handleTranslationFetched}
 				showTranslation={showTranslation}
 				translation={translation}
 			/>
-			{isTranslating && (
-				<div className="translation-loading">
-					Translating...
-				</div>
-			)}
 			{(translation && showTranslation) && (
 				<div
 					className="translation-result"
