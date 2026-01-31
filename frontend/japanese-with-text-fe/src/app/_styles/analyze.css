@@ -17,6 +17,7 @@
 }
 
 .lookup-paragraph{
+	position: relative;
 	margin: 10px;
 	background: rgba(195, 205, 232, 0.47);
 }
@@ -30,17 +31,36 @@
 }
 
 .translate-icon{
-	filter: drop-shadow(2px 1px 2px var(--shadow-blue));
+	vertical-align: text-bottom;
+	filter: drop-shadow(4px 2px 2px var(--shadow-blue));
+}
+
+.translate-icon-invisible{
+	display: none;
 }
 
 .translation-loading {
 	font-family: var(--font-space-mono);
-	color: var(--shadow-blue);
+	color: var(--yellow);
+	background: var(--shadow-blue);
 	padding: 5px;
 }
 
 .translation-result {
+	position: relative;
 	font-family: var(--font-space-mono);
-	color: var(--shadow-blue);
+	background: var(--shadow-blue);
+	color: var(--yellow);
 	padding: 5px;
+}
+
+.translation-result::before {
+	content: '';
+	position: absolute;
+	top: -10px;
+	left: var(--arrow-left, 20px);
+	transform: translateX(-50%);
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid var(--shadow-blue);
 }
