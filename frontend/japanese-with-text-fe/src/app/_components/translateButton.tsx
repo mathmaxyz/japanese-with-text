@@ -6,18 +6,16 @@ import { translateText } from "../_api/text_process_service";
 const TranslateButton = forwardRef<HTMLButtonElement, {
 	chunkId: number,
 	chunk: string,
-	onTranslationStart: () => void,
 	onTranslationComplete: (translation: string) => void,
 	showTranslation: boolean,
 	translation: string
-}>(({ chunkId, chunk, onTranslationStart, onTranslationComplete, showTranslation, translation }, ref) => {
+}>(({ chunkId, chunk, onTranslationComplete, showTranslation, translation }, ref) => {
 
 	const [isTranslating, setIsTranslating] = useState<boolean>(false);
 
 	const handleTranslate = async () => {
 		if (!translation) {
 			setIsTranslating(true);
-			onTranslationStart();
 			try {
 				const translation = await translateText(chunk);
 				onTranslationComplete(translation);
