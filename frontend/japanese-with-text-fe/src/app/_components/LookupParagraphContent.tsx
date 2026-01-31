@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import DefinedWord from "../_types/definedWord";
 import Word from "./Word";
 import TranslateButton from "./translateButton";
@@ -16,6 +16,18 @@ export default function LookupParagraphContent({
 	const [translation, setTranslation] = useState<string | null>(null);
 	const [isTranslating, setIsTranslating] = useState<boolean>(false);
 	const [showTranslation, setShowTranslation] = useState<boolean>(false);
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const [arrowLeft, setArrowLeft] = useState(0);
+
+	useEffect(() => {
+		if (buttonRef.current && showTranslation) {
+			const rect = buttonRef.current.getBoundingClientRect();
+			const parentRect = buttonRef.current.offsetParent?.getBoundingClientRect();
+			const calculatedLeft = rect.left - (parentRect?.left || 0) + rect.width / 2;
+			console.log('arrowLeft:', calculatedLeft, 'rect:', rect, 'parentRect:', parentRect);
+			setArrowLeft(calculatedLeft);
+		}
+	}, [showTranslation]);
 
 	const handleTranslationFetched = (translatedText: string) => {
 		setTranslation(translatedText);
@@ -33,13 +45,13 @@ export default function LookupParagraphContent({
 				<Word key={index} definedWord={word}></Word>
 			))}
 			<TranslateButton
+				ref={buttonRef}
 				chunkId={chunkId}
 				chunk={chunk}
 				onTranslationStart={handleTranslationStart}
 				onTranslationComplete={handleTranslationFetched}
 				showTranslation={showTranslation}
 				translation={translation}
-
 			/>
 			{isTranslating && (
 				<div className="translation-loading">
@@ -47,7 +59,10 @@ export default function LookupParagraphContent({
 				</div>
 			)}
 			{(translation && showTranslation) && (
-				<div className="translation-result">
+				<div
+					className="translation-result"
+					style={{ '--arrow-left': `${arrowLeft}px` } as React.CSSProperties}
+				>
 					{translation}
 				</div>
 			)}
