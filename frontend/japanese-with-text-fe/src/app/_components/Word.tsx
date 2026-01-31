@@ -15,9 +15,16 @@ export default function Word({ definedWord }: { definedWord: DefinedWord }) {
 
 	const isMobile = useIsMobile(600);
 
+	const handleOpenChange = (open: boolean) => {
+		setIsOpen(open);
+		if (!open) {
+			(document.activeElement as HTMLElement)?.blur();
+		}
+	};
+
 	const { refs, floatingStyles, context, middlewareData } = useFloating({
 		open: isOpen,
-		onOpenChange: setIsOpen,
+		onOpenChange: handleOpenChange,
 		middleware: [
 			offset(5),
 			autoPlacement({ padding: 10 }),
