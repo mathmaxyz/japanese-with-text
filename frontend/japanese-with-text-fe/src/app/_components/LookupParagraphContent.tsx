@@ -37,6 +37,7 @@ export default function LookupParagraphContent({
 				chunk={chunk}
 				onTranslationStart={handleTranslationStart}
 				onTranslationComplete={handleTranslationFetched}
+				showTranslation={showTranslation}
 				translation={translation}
 
 			/>
