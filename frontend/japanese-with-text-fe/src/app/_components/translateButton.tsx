@@ -1,4 +1,5 @@
 'use client'
+import "../_styles/translateButton.css"
 import { useState, forwardRef } from 'react';
 import { translateText } from "../_api/text_process_service";
 
