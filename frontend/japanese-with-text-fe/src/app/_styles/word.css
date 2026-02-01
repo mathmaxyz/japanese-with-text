@@ -33,3 +33,16 @@ ol {
 	font-size: 40px;
 	font-family: Arial;
 }
+
+.save-word-button{
+	height: 40px;
+	padding: 10px;
+	font-size: 14px;
+	background: var(--pink);
+	display: flex;
+	align-items: center;
+}
+
+.save-icon{
+	padding-right: 10px;
+}
