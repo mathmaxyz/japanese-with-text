@@ -28,6 +28,7 @@ This is a love letter to that scene.
 - [ ] API endpoint that takes a list of saved words and creates an anki deck from them and download button on frontend
 - [ ] Login functionality (user db, endpoints, UI)
 - [ ] Functionality to keep saved words for later
+- [ ] Ensure that words can be grouped with example sentences they came from
 - [ ] Proprietary SRS algorithm that saves users progress to the db
 - [ ] Flashcard UI on new frontend page
 - [ ] Implementation of smart flashcard ordering a la [morphman](https://github.com/kaegi/MorphMan)
