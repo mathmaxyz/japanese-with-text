@@ -36,13 +36,33 @@ ol {
 
 .save-word-button{
 	height: 40px;
+	width: 90px;
 	padding: 10px;
 	font-size: 14px;
-	background: var(--pink);
+	font-weight: 400;
 	display: flex;
 	align-items: center;
+}
+
+.add-word-button{
+	background: var(--pink);
+}
+
+.remove-word-button{
+	background: var(--yellow);
+	color: var(--shadow-blue);
+}
+
+.save-word-button-content{
+	display: flex;
+	align-items: center;
+}
+
+.check-icon{
+	padding-right: 6px;
 }
 
 .save-icon{
 	padding-right: 10px;
 }
+
