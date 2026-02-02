@@ -1,14 +1,16 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import SavedWord from "../_types/savedWord";
+import DictEntry from "../_types/dictEntry";
 
 const ONE_HOUR = 60 * 60 * 1000;
 
 interface SavedWordsStore {
-	savedWords: string[];
+	savedWords: SavedWord[];
 	lastActivity: number;
-	addWord: (word: string) => void;
-	removeWord: (word: string) => void;
-	isWordSaved: (word: string) => boolean;
+	addWord: (savedWord: SavedWord) => void;
+	removeWord: (savedWord: SavedWord) => void;
+	isWordSaved: (entry: DictEntry) => boolean;
 }
 
 export const useSavedWordsStore = create<SavedWordsStore>()(
@@ -16,13 +18,17 @@ export const useSavedWordsStore = create<SavedWordsStore>()(
 		(set, get) => ({
 			savedWords: [],
 			lastActivity: Date.now(),
-			addWord: (word: string) => set((state) => ({
-				savedWords: [...state.savedWords, word]
+			addWord: (savedWord: SavedWord) => set((state) => ({
+				savedWords: [...state.savedWords, savedWord]
 			})),
-			removeWord: (word: string) => set((state) => ({
-				savedWords: state.savedWords.filter(w => w !== word)
+			removeWord: (savedWord: SavedWord) => set((state) => ({
+				savedWords: state.savedWords.filter(w => (JSON.stringify(w) !== JSON.stringify(w)))
 			})),
-			isWordSaved: (word: string) => get().savedWords.includes(word),
+			isWordSaved: (entry: DictEntry) => {
+				return get().savedWords.filter(w => {
+					return JSON.stringify(w.entry) === JSON.stringify(entry)
+				}).length > 0;
+			},
 		}),
 		{
 			name: "saved-words",

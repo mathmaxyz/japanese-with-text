@@ -1,19 +1,23 @@
 'use client'
 
 import { useSavedWordsStore } from "../_state/savedWordsStore"
+import DictEntry from "../_types/dictEntry";
+import SavedWord from "../_types/savedWord";
 
-export default function SaveWordButton({ word }: { word: string }) {
+export default function SaveWordButton({ entry }: { entry: DictEntry }) {
 
 	const { addWord, removeWord, isWordSaved } = useSavedWordsStore();
 
-	const saved = isWordSaved(word);
+	const savedWord: SavedWord = { entry: entry, sentence: "" };
+
+	let saved = isWordSaved(savedWord.entry);
+
 
 	const handleClick = () => {
 		if (saved) {
-			removeWord(word);
+			removeWord(savedWord);
 		} else {
-			addWord(word);
-
+			addWord(savedWord);
 		}
 	};
 
