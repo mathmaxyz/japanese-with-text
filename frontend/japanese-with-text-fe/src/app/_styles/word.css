@@ -3,18 +3,18 @@
 	font-weight: 400;
 }
 
-h2 {
+.entry-content h2 {
 	color: var(--white);
 	font-family: var(--font-noto-sans), sans-serif;
 }
 
-h3 {
+.entry-content h3 {
 	color: var(--lighter-blue);
 	font-family: var(--font-space-mono), monospace;
 	font-weight: 400;
 }
 
-ol {
+.entry-content ol {
 	color: var(--white);
 	font-family: var(--font-space-mono), monospace;
 	font-weight: 400;

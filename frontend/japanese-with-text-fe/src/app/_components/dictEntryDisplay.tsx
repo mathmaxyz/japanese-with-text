@@ -8,7 +8,7 @@ export default function DictEntryDisplay({ entry }: { entry: DictEntry }) {
 
 	return (
 		<div className="entry-content">
-			<h2 className="key-word">{wordKanji !== null ? wordKanji : entry.word_kana}</h2>
+			<h2 className="key-word">{wordKanji ?? entry.word_kana}</h2>
 			<SaveWordButton entry={entry} />
 			<h3 className="reading">Reading: {wordKana}</h3>
 			<ol className="sense-list">

@@ -19,7 +19,10 @@
 .lookup-paragraph{
 	position: relative;
 	margin: 10px;
-	background: rgba(195, 205, 232, 0.47);
+	background: var(--paragraph-blue); 
 }
 
-
+.analysis-container{
+	display: flex;
+	align-items: space-evenly;
+}

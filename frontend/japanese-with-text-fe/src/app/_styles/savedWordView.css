@@ -1,0 +1,42 @@
+.saved-words-view{
+	margin-top: 20px;
+	background: var(--shadow-blue);
+	padding: 0px;
+}
+
+
+.saved-words-header h3 {
+	font-family: var(--font-red-hat);
+	font-weight: 400;
+	margin: 10px 0px 0px 10px;
+	color: var(--white);
+}
+
+.saved-word-container{
+	display: flex;
+	align-items: center;
+	width: 400px;
+	background: var(--yellow);
+	margin: 10px;
+	padding: 5px 10px;
+}
+
+.saved-word-container h2{
+	margin: 0;
+	color: var(--shadow-blue);
+	font-family: var(--font-noto-sans);
+	font-weight: 500;
+}
+
+.saved-word-container h3{
+	margin: 0;
+	padding-left: 10px;
+	font-family: var(--font-noto-sans);
+	color: var(--mid-blue);
+}
+
+.saved-word-container p {
+	margin: 0;
+	padding-left: 10px;
+	color: var(--shadow-blue);
+}
