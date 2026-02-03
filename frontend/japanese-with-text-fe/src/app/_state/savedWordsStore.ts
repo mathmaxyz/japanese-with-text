@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, devtools } from "zustand/middleware";
 import SavedWord from "../_types/savedWord";
 import DictEntry from "../_types/dictEntry";
 
@@ -14,7 +14,7 @@ interface SavedWordsStore {
 }
 
 export const useSavedWordsStore = create<SavedWordsStore>()(
-	persist(
+	devtools(persist(
 		(set, get) => ({
 			savedWords: [],
 			lastActivity: Date.now(),
@@ -22,7 +22,7 @@ export const useSavedWordsStore = create<SavedWordsStore>()(
 				savedWords: [...state.savedWords, savedWord]
 			})),
 			removeWord: (savedWord: SavedWord) => set((state) => ({
-				savedWords: state.savedWords.filter(w => (JSON.stringify(w) !== JSON.stringify(w)))
+				savedWords: state.savedWords.filter(w => (JSON.stringify(w.entry) !== JSON.stringify(savedWord.entry)))
 			})),
 			isWordSaved: (entry: DictEntry) => {
 				return get().savedWords.filter(w => {
@@ -41,6 +41,7 @@ export const useSavedWordsStore = create<SavedWordsStore>()(
 				}
 			}
 		}
-	)
+	))
 )
+
 
