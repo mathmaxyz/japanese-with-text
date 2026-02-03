@@ -5,7 +5,7 @@ import "../_styles/textform.css"
 import Form from "next/form"
 
 export default function TextForm() {
-	const [text, setText] = useState("");
+	const [text, setText] = useState<string>("");
 
 	const handleClick = () => {
 		const button = document.getElementById("analyze-button");

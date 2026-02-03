@@ -16,7 +16,7 @@ export default function LookupParagraphContent({
 	const [translation, setTranslation] = useState<string | null>(null);
 	const [showTranslation, setShowTranslation] = useState<boolean>(false);
 	const buttonRef = useRef<HTMLButtonElement>(null);
-	const [arrowLeft, setArrowLeft] = useState(0);
+	const [arrowLeft, setArrowLeft] = useState<number>(0);
 
 	useEffect(() => {
 		if (buttonRef.current && showTranslation) {

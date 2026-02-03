@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 
 export function useIsMobile(breakpoint = 600) {
-	const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+	const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < breakpoint);
 
 	useEffect(() => {
 		const handleResize = () => setIsMobile(window.innerWidth < breakpoint);

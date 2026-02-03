@@ -11,7 +11,7 @@ import DictEntryDisplay from "./dictEntryDisplay";
 export default function Word({ definedWord }: { definedWord: DefinedWord }) {
 
 
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const isMobile = useIsMobile(600);
 
