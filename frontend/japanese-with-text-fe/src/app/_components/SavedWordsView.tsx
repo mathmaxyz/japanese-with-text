@@ -16,7 +16,8 @@ export default function SavedWordsView({ }) {
 	useEffect(() => setIsOpen(!isMobile), [isMobile, setIsOpen])
 
 	return (
-		<div className="saved-words-wrapper">
+		<div className={isOpen && isMobile ? "saved-words-wrapper sidebar-open-mobile" : "saved-words-wrapper"
+		}>
 			<div className="saved-words-view">
 				<div className={isOpen ? "saved-words-header" : "saved-words-header vertical-header"}>
 					<SideBarToggle />
@@ -27,6 +28,6 @@ export default function SavedWordsView({ }) {
 				)
 				}
 			</div>
-		</div>
+		</div >
 	)
 }
