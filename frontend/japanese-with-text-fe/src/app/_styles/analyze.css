@@ -1,5 +1,5 @@
 .analyzed-text{
-	margin: 10px;
+	margin: 0px 10px 10px 10px;
 }
 
 .word-button {
@@ -18,7 +18,7 @@
 
 .lookup-paragraph{
 	position: relative;
-	margin: 10px;
+	margin: 0px 10px 10px 10px;
 	background: var(--paragraph-blue); 
 }
 

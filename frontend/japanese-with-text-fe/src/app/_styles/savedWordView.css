@@ -1,12 +1,16 @@
-.saved-words-view{
-	margin: 20px 10px 20px 0px;
+.saved-words-wrapper{
+	margin: 0px 10px 20px 0px;
 	background: var(--shadow-blue);
 	padding: 0px;
 	width: fit-content;
+	position: sticky;
+	align-self: stretch;
 }
 
-.sidebar-closed{
-	display: none;
+.saved-words-view{
+	position: sticky;
+	top: 90px;
+	width: 100%;
 }
 
 .saved-words-header{
