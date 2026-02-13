@@ -22,13 +22,15 @@ export default function Word({ definedWord }: { definedWord: DefinedWord }) {
 		}
 	};
 
+	const padding = { top: 100, left: 10, bottom: 10, right: 10 }
+
 	const { refs, floatingStyles, context, middlewareData } = useFloating({
 		open: isOpen,
 		onOpenChange: handleOpenChange,
 		middleware: [
 			offset(5),
-			autoPlacement({ padding: 10 }),
-			shift({ padding: 10, crossAxis: true }),
+			autoPlacement({ padding: padding }),
+			shift({ padding: padding, crossAxis: true }),
 			size({
 				apply({ availableHeight, elements }) {
 					Object.assign(elements.floating.style, {
@@ -36,17 +38,11 @@ export default function Word({ definedWord }: { definedWord: DefinedWord }) {
 						overflow: 'auto'
 					});
 				},
-				padding: 10,
+				padding: padding,
 			}),
 		],
 		whileElementsMounted: autoUpdate,
 	})
-
-	useEffect(() => {
-		if (isOpen && middlewareData) {
-			console.log("shift data: ", middlewareData.shift);
-		}
-	}, [isOpen, middlewareData]);
 
 	const click = useClick(context);
 	const dismiss = useDismiss(context, {
