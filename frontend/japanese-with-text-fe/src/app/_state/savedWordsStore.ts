@@ -13,6 +13,8 @@ interface SavedWordsStore {
 	isWordSaved: (entry: DictEntry) => boolean;
 }
 
+//TODO: Add clearWords action to ensure that the menu is clear when a new text is analyzed
+
 export const useSavedWordsStore = create<SavedWordsStore>()(
 	devtools(persist(
 		(set, get) => ({
