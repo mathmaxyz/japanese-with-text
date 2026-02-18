@@ -83,9 +83,8 @@ export async function analyzeText(formData: FormData) {
 
 export async function translateText(text: string): Promise<string> {
 	const response: TranslateResponse = await service.get_translation([text]);
-	console.log(response);
 	if (!response || !response.translated_text) {
-		console.error("");
+		console.error("Issue while fetching translation");
 		return "";
 	}
 	return response.translated_text[0];

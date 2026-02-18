@@ -7,9 +7,12 @@ const ONE_HOUR = 60 * 60 * 1000;
 
 interface SavedWordsStore {
 	savedWords: SavedWord[];
+	textId: string | null;
 	lastActivity: number;
 	addWord: (savedWord: SavedWord) => void;
 	removeWord: (savedWord: SavedWord) => void;
+	clearWords: () => void;
+	setTextId: (id: string) => void;
 	isWordSaved: (entry: DictEntry) => boolean;
 }
 
@@ -20,11 +23,23 @@ export const useSavedWordsStore = create<SavedWordsStore>()(
 		(set, get) => ({
 			savedWords: [],
 			lastActivity: Date.now(),
+			textId: null,
 			addWord: (savedWord: SavedWord) => set((state) => ({
-				savedWords: [...state.savedWords, savedWord]
+				savedWords: [...state.savedWords, savedWord],
+				lastActivity: Date.now()
 			})),
 			removeWord: (savedWord: SavedWord) => set((state) => ({
-				savedWords: state.savedWords.filter(w => (JSON.stringify(w.entry) !== JSON.stringify(savedWord.entry)))
+				savedWords: state.savedWords.filter(w => (JSON.stringify(w.entry) !== JSON.stringify(savedWord.entry))),
+				lastActivity: Date.now()
+			})),
+			clearWords: () => set(() => ({
+				savedWords: []
+			})),
+			setTextId: (id: string) => set(() => ({
+				textId: id
+			})),
+			updateActivity: () => set(() => ({
+				lastActivity: Date.now()
 			})),
 			isWordSaved: (entry: DictEntry) => {
 				return get().savedWords.filter(w => {
@@ -35,7 +50,7 @@ export const useSavedWordsStore = create<SavedWordsStore>()(
 		{
 			name: "saved-words",
 			onRehydrateStorage: () => (state) => {
-				if (state && state.lastActivity - Date.now() > ONE_HOUR) {
+				if (state && Date.now() - state.lastActivity > ONE_HOUR) {
 					useSavedWordsStore.setState({
 						savedWords: [],
 						lastActivity: Date.now()
