@@ -9,10 +9,9 @@ export default function AnalyzedText({ id, children }: { id: string, children: R
 
 	const { isOpen } = useSidebarStore();
 	const isMobile = useIsMobile(600);
-	const { textId, setTextId, clearWords, updateActivity } = useSavedWordsStore();
+	const { textId, setTextId, clearWords } = useSavedWordsStore();
 
 	useEffect(() => {
-		updateActivity();
 		if (id != textId) {
 			clearWords();
 			setTextId(id);
