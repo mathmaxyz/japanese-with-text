@@ -28,8 +28,15 @@ export default function SavedWordsView({ }) {
 					<SideBarToggle />
 					<h3 className={isOpen ? "" : "vertical-text"}>Saved Words</h3>
 				</div>
-				{isOpen && (
+				{(isOpen && savedWords.length > 0) && (
 					savedWords.map((w, index) => <SavedWordDisplay removeWordHandler={removeWordHandler} key={index} word={w} />)
+				)
+				}
+				{(isOpen && savedWords.length == 0) && (
+					<div className="saved-words-cta-container">
+						< p className="saved-words-cta">Save words here</p>
+					</div>
+
 				)
 				}
 			</div>
