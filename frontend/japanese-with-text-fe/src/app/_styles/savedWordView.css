@@ -10,6 +10,9 @@
 .saved-words-view{
 	position: sticky;
 	top: 90px;
+}
+
+.saved-words-open-desktop{
 	width: min(30vw, 400px);
 }
 
