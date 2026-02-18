@@ -1,0 +1,47 @@
+.saved-word-container{
+	display: flex;
+	align-items: center;
+	max-width: 400px;
+	height: 40px;
+	background: var(--lighter-blue);
+	margin: 10px;
+	padding: 5px 10px;
+}
+
+.saved-word-container h2{
+	margin: 0;
+	color: var(--shadow-blue);
+	font-family: var(--font-noto-sans);
+	font-weight: 500;
+	overflow: hidden;
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.saved-word-container h3{
+	margin: 0;
+	font-size: 16px;
+	padding-left: 10px;
+	font-family: var(--font-noto-sans);
+	color: var(--mid-blue);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.remove-button-container{
+	display: flex;
+	flex-grow: 1;
+	justify-content: flex-end;
+}
+
+.remove-saved-word-button{
+	background: none;
+	width: 35px;
+	height: 35px;
+	padding: 5px;
+}
+
+.remove-saved-word-button:hover > svg > path {
+	fill: var(--shadow-blue);
+}

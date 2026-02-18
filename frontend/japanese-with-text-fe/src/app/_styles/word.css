@@ -3,18 +3,18 @@
 	font-weight: 400;
 }
 
-h2 {
+.entry-content h2 {
 	color: var(--white);
 	font-family: var(--font-noto-sans), sans-serif;
 }
 
-h3 {
+.entry-content h3 {
 	color: var(--lighter-blue);
 	font-family: var(--font-space-mono), monospace;
 	font-weight: 400;
 }
 
-ol {
+.entry-content ol {
 	color: var(--white);
 	font-family: var(--font-space-mono), monospace;
 	font-weight: 400;
@@ -33,3 +33,36 @@ ol {
 	font-size: 40px;
 	font-family: Arial;
 }
+
+.save-word-button{
+	height: 40px;
+	width: 90px;
+	padding: 10px;
+	font-size: 14px;
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+}
+
+.add-word-button{
+	background: var(--pink);
+}
+
+.remove-word-button{
+	background: var(--yellow);
+	color: var(--shadow-blue);
+}
+
+.save-word-button-content{
+	display: flex;
+	align-items: center;
+}
+
+.check-icon{
+	padding-right: 6px;
+}
+
+.save-icon{
+	padding-right: 10px;
+}
+

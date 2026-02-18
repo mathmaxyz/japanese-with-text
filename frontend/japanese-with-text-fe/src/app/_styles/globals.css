@@ -8,6 +8,8 @@
 	--lighter-blue: #BFD3F8;
 	--mid-blue: #5673B3;
 	--orange: #E88817;
+	--paragraph-blue: rgba(195, 205, 232, 0.47);
+
 }
 
 html {
@@ -16,8 +18,8 @@ html {
 
 body {
 	background: var(--sky-blue);
-	min-height: 100vh;
 	margin: 0;
+	height: 100%;
 }
 
 h1 {
@@ -47,6 +49,10 @@ button {
 	padding: 20px 20px;
 	text-align: center;
 	cursor: pointer;
+}
+
+.hidden{
+	display:none;
 }
 
 .action-button {
@@ -87,9 +93,8 @@ button {
 }
 
 .main-content {
-	margin: 20px auto;
+	margin: 0px auto;
 	width: 100vw;
-	height: 80vh;
 }
 
 

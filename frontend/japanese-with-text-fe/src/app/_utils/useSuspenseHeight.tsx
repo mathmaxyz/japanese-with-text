@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export function useSuspenseHeight(chunk: string) {
 
-	const [height, setHeight] = useState(200);
+	const [height, setHeight] = useState<number>(200);
 
 	const calculateHeight = (text: string) => {
 		const containerWidth = window.innerWidth - 10;

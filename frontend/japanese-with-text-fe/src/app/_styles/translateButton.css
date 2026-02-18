@@ -11,10 +11,6 @@
 	filter: drop-shadow(4px 2px 2px var(--shadow-blue));
 }
 
-.translate-icon-invisible{
-	display: none;
-}
-
 .translation-loading {
 	font-family: var(--font-space-mono);
 	color: var(--yellow);

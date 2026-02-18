@@ -1,3 +1,11 @@
+.topbar-container{
+	position: sticky;
+	z-index: 100;
+	background: var(--sky-blue);
+	top: 0;
+	padding: 10px 0px 20px 0px;
+}
+
 .topbar-title {
 	display: flex;
 	flex-direction: row;

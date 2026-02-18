@@ -1,5 +1,5 @@
 .analyzed-text{
-	margin: 10px;
+	margin: 0px 10px 10px 10px;
 }
 
 .word-button {
@@ -18,8 +18,11 @@
 
 .lookup-paragraph{
 	position: relative;
-	margin: 10px;
-	background: rgba(195, 205, 232, 0.47);
+	margin: 0px 10px 10px 10px;
+	background: var(--paragraph-blue); 
 }
 
-
+.analysis-container{
+	display: flex;
+	align-items: space-evenly;
+}
