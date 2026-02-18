@@ -2,15 +2,21 @@
 	margin: 0px 10px 20px 0px;
 	background: var(--shadow-blue);
 	padding: 0px;
-	width: fit-content;
 	position: sticky;
+	width: fit-content;
 	align-self: stretch;
 }
 
 .saved-words-view{
 	position: sticky;
 	top: 90px;
-	width: 100%;
+	width: min(30vw, 400px);
+}
+
+.saved-words-collapsed{
+	position: sticky;
+	top: 90px;
+	width: fit-content;
 }
 
 .sidebar-open-mobile{
