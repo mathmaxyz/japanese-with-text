@@ -1,6 +1,5 @@
 import dict_repository
 from psycopg.rows import DictRow
-from pydantic import BaseModel
 from custom_types import Morph, Sense, DictEntry, DefinedWord, LookupResponse, WordWithDictForm
 
 def initialise_pool() -> None:

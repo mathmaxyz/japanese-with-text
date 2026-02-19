@@ -60,6 +60,7 @@ def get_dict_entries_for_text(morphemes: list[str]) -> list[list[DictRow]]:
         with con_pool.connection() as con:
             try:
                 with con.cursor(row_factory=dict_row) as cur:
+                    #UNNEST turns the morphemes into their own table with their array index as ord to preserve order
                     query = """SELECT * FROM entries e JOIN UNNEST(%s::text[])
                             WITH ORDINALITY AS u(morpheme, ord) 
                             ON e.word_kanji @> ARRAY[u.morpheme] 
@@ -95,6 +96,7 @@ def get_senses_by_entry_ids(all_entry_ids: list[list[int]]) -> list[dict[int, li
                                      """
                         cur.execute(query,(entry_ids,))
                         senses = cur.fetchall()
+                        #The query gives back just a list of senses which are not really useful unless batched by id
                         for sense in senses:
                             senses_by_entry_id[sense["entry_id"]].append(sense)
                         results.append(senses_by_entry_id)
