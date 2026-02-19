@@ -54,12 +54,13 @@ def get_dictionary_forms(morphs: list[Morph]) -> list[WordWithDictForm]:
 def get_lookup_response(morphemes) -> LookupResponse:
     morphs = rejoin_verbs_and_auxiliaries(morphemes)
     words_with_dict_form = get_dictionary_forms(morphs)
-    request = []
     dict_rows_list: list[list[DictRow]] = dict_repository.get_dict_entries_for_text([m.dict_form for m in words_with_dict_form])
     if(len(dict_rows_list) <=0):
         return LookupResponse(defined_words=[])
+    entry_ids = [[e["id"] for e in word] for word in dict_rows_list]
+    sense_rows_list: list[dict[int,list[DictRow]]] = dict_repository.get_senses_by_entry_ids(entry_ids)
     translated_words: list[DefinedWord] = []
-    for row_list, m in zip(dict_rows_list, words_with_dict_form):
+    for row_list, sense_row_dict, m in zip(dict_rows_list, sense_rows_list, words_with_dict_form):
         if(len(row_list) <= 0):
             translated_words.append(
                 DefinedWord(
@@ -70,17 +71,17 @@ def get_lookup_response(morphemes) -> LookupResponse:
             continue
         dict_entries: list[DictEntry] = []
         for row in row_list:
-            senses: list[DictRow] = dict_repository.get_senses_by_entry_id(row.get("id"))
             sense_list: list[Sense] = []
-            for s in senses:
+            senses_for_entry = sense_row_dict[row["id"]]
+            for s in senses_for_entry:
                 sense = Sense(
-                    definitions=s.get("definitions"),
-                    extra_info=s.get("extra_info")
+                    definitions=s["definitions"],
+                    extra_info=s["extra_info"]
                 )
                 sense_list.append(sense)
             de = DictEntry(
-                word_kanji=row.get("word_kanji"),
-                word_kana=row.get("word_kana"),
+                word_kanji=row["word_kanji"],
+                word_kana=row["word_kana"],
                 senses=sense_list
             )
             dict_entries.append(de)

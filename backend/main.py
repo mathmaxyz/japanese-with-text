@@ -12,6 +12,8 @@ import dict_service
 import translate_service
 # Load environment variables
 
+sudict = dictionary.Dictionary()
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     dict_service.initialise_pool()
@@ -39,9 +41,9 @@ async def root():
 @app.post("/lookup-text", response_model=LookupResponse)
 def lookup_text(request: LookupRequest):
     mode = tokenizer.Tokenizer.SplitMode.C
-    sudict = dictionary.Dictionary().create(mode=mode)
+    sutokenizer = sudict.create(mode=mode)
     text = request.text
-    morphemes = sudict.tokenize(text);
+    morphemes = sutokenizer.tokenize(text);
     return dict_service.get_lookup_response(morphemes)
 
 @app.post("/translate-text", response_model=TranslateResponse)
