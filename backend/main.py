@@ -10,6 +10,7 @@ from sudachipy import dictionary
 from custom_types import LookupRequest, Mode, LookupResponse, GrammarResponse, TranslateRequest, TranslateResponse
 import dict_service
 import translate_service
+import re
 # Load environment variables
 
 sudict = dictionary.Dictionary()
@@ -44,7 +45,8 @@ def lookup_text(request: LookupRequest):
     sutokenizer = sudict.create(mode=mode)
     text = request.text
     morphemes = sutokenizer.tokenize(text);
-    return dict_service.get_lookup_response(morphemes)
+    sentences  = [s.strip() for s in re.split(r'(?<=[。！？])', text) if s.strip()]
+    return dict_service.get_lookup_response(morphemes, sentences)
 
 @app.post("/translate-text", response_model=TranslateResponse)
 def translate(request: TranslateRequest):

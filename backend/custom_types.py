@@ -27,6 +27,7 @@ class DictEntry(BaseModel):
 class DefinedWord(BaseModel):
     original_word: str
     dict_entries: list[DictEntry]
+    sentence: str
 
 class LookupResponse(BaseModel):
     defined_words: list[DefinedWord]
