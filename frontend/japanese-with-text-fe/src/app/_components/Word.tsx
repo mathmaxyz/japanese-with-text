@@ -59,7 +59,7 @@ export default function Word({ definedWord }: { definedWord: DefinedWord }) {
 	const getDictEntryDisplays = () => {
 		return (
 			definedWord.dict_entries.map((entry, index) => (
-				<DictEntryDisplay key={index} entry={entry}></DictEntryDisplay>
+				<DictEntryDisplay key={index} entry={entry} sentence={definedWord.sentence}></DictEntryDisplay>
 			))
 		)
 	}

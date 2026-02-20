@@ -1,7 +1,7 @@
 import DictEntry from "../_types/dictEntry";
 import SaveWordButton from "./SaveWordButton";
 
-export default function DictEntryDisplay({ entry }: { entry: DictEntry }) {
+export default function DictEntryDisplay({ entry, sentence }: { entry: DictEntry, sentence: string }) {
 	const wordKanji: string[] | null = entry.word_kanji.length > 0 ? entry.word_kanji : null;
 	const wordKana: string[] | null = entry.word_kana.length > 0 ? entry.word_kana : null;
 	const senses = entry.senses;
@@ -9,7 +9,7 @@ export default function DictEntryDisplay({ entry }: { entry: DictEntry }) {
 	return (
 		<div className="entry-content">
 			<h2 className="key-word">{wordKanji ?? entry.word_kana}</h2>
-			<SaveWordButton entry={entry} />
+			<SaveWordButton entry={entry} sentence={sentence} />
 			<h3 className="reading">Reading: {wordKana}</h3>
 			<ol className="sense-list">
 				{senses.map((sense, index) => (
