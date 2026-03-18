@@ -60,11 +60,17 @@
 	.saved-word-container h3 {
 		font-size: 12px;
 	}
+	.generate-anki-button {
+		font-size: 18px;
+	}
 }
 
 @media (max-width: 768px){
 	.saved-word-container h3 {
 		display: none;
+	}
+	.generate-anki-button {
+		font-size: 16px;
 	}
 }
 
@@ -94,4 +100,22 @@
 	width: fit-content;
 	padding: 10px;
 	color: var(--lighter-blue);
+}
+
+.generate-anki-button{
+	padding: 10px;
+	margin-top: 20px;
+	width: fit-content;
+	font-family: var(--font-space-mono);
+	filter: drop-shadow(4px 2px 2px black);
+}
+
+.saved-words-content{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.saved-words-list{
+	width: 100%;
 }

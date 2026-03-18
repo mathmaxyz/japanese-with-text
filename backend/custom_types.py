@@ -29,6 +29,15 @@ class DefinedWord(BaseModel):
     dict_entries: list[DictEntry]
     sentence: str
 
+class MinedWord(BaseModel):
+    original_word: str
+    entry: DictEntry
+    sentence: str
+
+class AnkiDeckRequest(BaseModel):
+    name: str
+    mined_words: list[MinedWord]
+
 class LookupResponse(BaseModel):
     defined_words: list[DefinedWord]
     

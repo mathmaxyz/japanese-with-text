@@ -1,16 +1,20 @@
 from dotenv import load_dotenv
+
 load_dotenv()
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import openai
 from sudachipy import tokenizer
 from sudachipy import dictionary
-from custom_types import LookupRequest, Mode, LookupResponse, GrammarResponse, TranslateRequest, TranslateResponse
+from custom_types import LookupRequest, Mode, LookupResponse, GrammarResponse, TranslateRequest, TranslateResponse, AnkiDeckRequest
 import dict_service
 import translate_service
+import anki_deck_service
 import re
+import random
 # Load environment variables
 
 sudict = dictionary.Dictionary()
@@ -55,6 +59,13 @@ def translate(request: TranslateRequest):
     if not translate_result:
         raise HTTPException(status_code=500, detail="Translator unavailable")
     return translate_result
+
+@app.post("/create-anki-deck")
+def create_anki_deck(request: AnkiDeckRequest):
+    id = random.randint(1, 1000000)
+    file_path = anki_deck_service.create_anki_pkg(id, request)
+    return FileResponse(file_path)
+
 
 @app.get("/health")
 async def health_check():

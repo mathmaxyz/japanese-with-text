@@ -29,7 +29,12 @@ export default function SavedWordsView({ }) {
 					<h3 className={isOpen ? "" : "vertical-text"}>Saved Words</h3>
 				</div>
 				{(isOpen && savedWords.length > 0) && (
-					savedWords.map((w, index) => <SavedWordDisplay removeWordHandler={removeWordHandler} key={index} word={w} />)
+					<div className="saved-words-content">
+						<div className="saved-words-list">
+							{savedWords.map((w, index) => <SavedWordDisplay removeWordHandler={removeWordHandler} key={index} word={w} />)}
+						</div>
+						<button className="generate-anki-button action-button">Make anki deck</button>
+					</div>
 				)
 				}
 				{(isOpen && savedWords.length == 0) && (
