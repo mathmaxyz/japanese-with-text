@@ -6,7 +6,6 @@ import { saveData } from "../_cache/cache";
 import LookupResponse from "../_types/lookupResponse";
 import TranslateResponse from "../_types/translateResponse";
 
-const BASE_URL = process.env.API_URL
 
 class TextProcessService extends Base_api {
 
@@ -15,7 +14,7 @@ class TextProcessService extends Base_api {
 	}
 
 	async get_lookup(text: string): Promise<LookupResponse> {
-		const url = `${BASE_URL}/lookup-text`
+		const url = `${this.base_url}/lookup-text`
 		const request = new Request(
 			url,
 			{
@@ -30,7 +29,7 @@ class TextProcessService extends Base_api {
 	}
 
 	async get_translation(text: string[]): Promise<TranslateResponse> {
-		const url = `${BASE_URL}/translate-text`
+		const url = `${this.base_url}/translate-text`
 
 		const request = new Request(
 			url,

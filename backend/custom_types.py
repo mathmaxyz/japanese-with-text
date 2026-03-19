@@ -35,8 +35,8 @@ class MinedWord(BaseModel):
     sentence: str
 
 class AnkiDeckRequest(BaseModel):
-    name: str
     mined_words: list[MinedWord]
+    name: str
 
 class LookupResponse(BaseModel):
     defined_words: list[DefinedWord]

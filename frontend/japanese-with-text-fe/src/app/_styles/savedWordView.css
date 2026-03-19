@@ -108,6 +108,7 @@
 	width: fit-content;
 	font-family: var(--font-space-mono);
 	filter: drop-shadow(4px 2px 2px black);
+	text-decoration: none;
 }
 
 .saved-words-content{

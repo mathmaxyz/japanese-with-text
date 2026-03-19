@@ -3,21 +3,39 @@ import "../_styles/savedWordView.css"
 import { useSavedWordsStore } from "../_state/savedWordsStore"
 import { useSidebarStore } from "../_state/sidebarStore"
 import SavedWordDisplay from "./SavedWordDisplay";
-import { useEffect } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { useIsMobile } from "../_utils/useIsMobile";
 import SideBarToggle from "./SideBarToggle";
 import SavedWord from "../_types/savedWord";
+import { createAnkiDeck } from "../_api/anki_deck_service";
 
 export default function SavedWordsView({ }) {
 
 	const { savedWords, removeWord } = useSavedWordsStore();
 	const { isOpen, setIsOpen } = useSidebarStore();
+	const [blobUrl, setBlobUrl] = useState<null | string>(null);
 	const isMobile = useIsMobile(600);
 
 	useEffect(() => setIsOpen(!isMobile), [isMobile, setIsOpen])
 
 	const removeWordHandler = (word: SavedWord) => {
 		removeWord(word);
+	}
+
+	const handleGenerateDeck = async () => {
+		const name = "temp_name"
+		const url = await createAnkiDeck(savedWords, name);
+		if (url) {
+			setBlobUrl(url);
+			console.log(blobUrl)
+		}
+	}
+
+	const handleRevokeUrl = () => {
+		setTimeout(() => {
+			URL.revokeObjectURL(blobUrl!)
+			setBlobUrl(null)
+		}, 1000)
 	}
 
 	return (
@@ -33,7 +51,14 @@ export default function SavedWordsView({ }) {
 						<div className="saved-words-list">
 							{savedWords.map((w, index) => <SavedWordDisplay removeWordHandler={removeWordHandler} key={index} word={w} />)}
 						</div>
-						<button className="generate-anki-button action-button">Make anki deck</button>
+						{!blobUrl &&
+							(<button onClick={handleGenerateDeck} className="generate-anki-button action-button">Make anki deck</button>)
+						}
+						{
+							blobUrl && (
+								<a onClick={handleRevokeUrl} className="generate-anki-button action-button" href={blobUrl} download="ankiDeck.apkg">Download</a>
+							)
+						}
 					</div>
 				)
 				}

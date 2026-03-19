@@ -31,7 +31,7 @@ app = FastAPI(title="Language Learning API", version="1.0.0", lifespan=lifespan)
 # Configure CORS for React frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React dev server
+    allow_origins=["http://localhost:3000", "http://172.29.66.191:3000"],  # React dev server
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -62,6 +62,7 @@ def translate(request: TranslateRequest):
 
 @app.post("/create-anki-deck")
 def create_anki_deck(request: AnkiDeckRequest):
+    print(request)
     id = random.randint(1, 1000000)
     file_path = anki_deck_service.create_anki_pkg(id, request)
     return FileResponse(file_path)
