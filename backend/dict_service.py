@@ -50,7 +50,7 @@ def get_dictionary_forms(morphs: list[Morph]) -> list[WordWithDictForm]:
         )
     return words_with_dict_form
 
-def get_lookup_response(morphemes) -> LookupResponse:
+def get_lookup_response(morphemes, sentences) -> LookupResponse:
     morphs = rejoin_verbs_and_auxiliaries(morphemes)
     words_with_dict_form = get_dictionary_forms(morphs)
     dict_rows_list: list[list[DictRow]] = dict_repository.get_dict_entries_for_text([m.dict_form for m in words_with_dict_form])
@@ -59,12 +59,14 @@ def get_lookup_response(morphemes) -> LookupResponse:
     entry_ids = [[e["id"] for e in word] for word in dict_rows_list]
     sense_rows_list: list[dict[int,list[DictRow]]] = dict_repository.get_senses_by_entry_ids(entry_ids)
     translated_words: list[DefinedWord] = []
+    sentence_index = 0
     for row_list, sense_row_dict, m in zip(dict_rows_list, sense_rows_list, words_with_dict_form):
         if(len(row_list) <= 0):
             translated_words.append(
                 DefinedWord(
                     original_word=m.conjugated,
-                    dict_entries=[]
+                    dict_entries=[],
+                    sentence=""
                 )
             )
             continue
@@ -86,9 +88,13 @@ def get_lookup_response(morphemes) -> LookupResponse:
             dict_entries.append(de)
         tw = DefinedWord(
             original_word=m.conjugated,
-            dict_entries=dict_entries
+            dict_entries=dict_entries,
+            sentence=sentences[sentence_index]
         )
         translated_words.append(tw)
+        if m.conjugated == "。":
+           sentence_index +=1
     return LookupResponse(
+        name=sentences[0],
         defined_words=translated_words
     )

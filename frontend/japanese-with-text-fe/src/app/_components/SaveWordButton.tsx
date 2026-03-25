@@ -4,14 +4,21 @@ import { useSavedWordsStore } from "../_state/savedWordsStore"
 import DictEntry from "../_types/dictEntry";
 import SavedWord from "../_types/savedWord";
 
-export default function SaveWordButton({ entry }: { entry: DictEntry }) {
+export default function SaveWordButton({ entry, originalWord, sentence }: {
+	entry: DictEntry,
+	originalWord: string,
+	sentence: string
+}) {
 
 	const { addWord, removeWord, isWordSaved } = useSavedWordsStore();
 
-	const savedWord: SavedWord = { entry: entry, sentence: "" };
+	const savedWord: SavedWord = {
+		original_word: originalWord,
+		entry: entry,
+		sentence: sentence
+	};
 
 	let saved = isWordSaved(savedWord.entry);
-
 
 	const handleClick = () => {
 		if (saved) {
