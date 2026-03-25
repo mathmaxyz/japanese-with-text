@@ -95,5 +95,6 @@ def get_lookup_response(morphemes, sentences) -> LookupResponse:
         if m.conjugated == "。":
            sentence_index +=1
     return LookupResponse(
+        name=sentences[0],
         defined_words=translated_words
     )

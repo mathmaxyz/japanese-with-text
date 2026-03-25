@@ -120,3 +120,30 @@
 .saved-words-list{
 	width: 100%;
 }
+
+.deck-name-chooser{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.deck-name-chooser-label{
+	font-family: var(--font-red-hat);
+	color: white;
+}
+
+.deck-name-chooser-input{
+	margin: 10px;
+	font-size: 18px;
+	font-family: var(--font-noto-sans);
+	color: var(--shadow-blue);
+	width: 80%;
+	font-weight: 400;
+}
+
+.deck-name-chooser-button{
+	padding: 5px;
+	font-size: 18px;
+	margin-bottom: 20px;
+	filter: drop-shadow(4px 2px 2px black);
+}

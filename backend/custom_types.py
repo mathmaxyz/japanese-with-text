@@ -39,6 +39,7 @@ class AnkiDeckRequest(BaseModel):
     name: str
 
 class LookupResponse(BaseModel):
+    name: str
     defined_words: list[DefinedWord]
     
 class LookupObject(BaseModel):

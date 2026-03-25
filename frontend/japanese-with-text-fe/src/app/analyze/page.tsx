@@ -35,7 +35,7 @@ export default async function AnalysisPage({
 						</Suspense>
 					))}
 				</AnalyzedText>
-				<SavedWordsView />
+				<SavedWordsView name={firstLookup.name} />
 			</section>
 		</section >
 	)
