@@ -31,8 +31,7 @@ export default function SavedWordsView({ name }: { name: string }) {
 	}
 
 	const handleGenerateDeck = async () => {
-		const name = deckName;
-		const url = await createAnkiDeck(savedWords, name);
+		const url = await createAnkiDeck(savedWords, deckName);
 		if (url) {
 			setBlobUrl(url);
 			console.log(blobUrl)
@@ -79,7 +78,7 @@ export default function SavedWordsView({ name }: { name: string }) {
 
 						}
 						{blobUrl && (
-							<a onClick={handleRevokeUrl} className="generate-anki-button action-button" href={blobUrl} download={`dokumate_deck_${getCurrentDate()}`}>Download</a>
+							<a onClick={handleRevokeUrl} className="generate-anki-button action-button" href={blobUrl} download={`dokumate_deck_${getCurrentDate()}.apkg`}>Download</a>
 						)
 						}
 					</div>

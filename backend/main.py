@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 
 load_dotenv()
+import hashlib
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
@@ -62,9 +63,8 @@ def translate(request: TranslateRequest):
 
 @app.post("/create-anki-deck")
 def create_anki_deck(request: AnkiDeckRequest):
-    print(request)
-    id = random.randint(1, 1000000)
-    file_path = anki_deck_service.create_anki_pkg(id, request)
+    id = generate_deck_id(request.name)
+    file_path = anki_deck_service.create_anki_pkg(241243, request)
     return FileResponse(file_path)
 
 
@@ -72,3 +72,8 @@ def create_anki_deck(request: AnkiDeckRequest):
 async def health_check():
     return {"status": "healthy", "framework": "FastAPI"}
 
+#generate a unique id for each deck name
+def generate_deck_id(name: str) -> int:
+    hash_bytes = hashlib.sha256(name.encode()).digest()
+    #ensure the id does not exceed the signed 64 bit limit of genanki's sqlite db using modulo
+    return int.from_bytes(hash_bytes[:8], byteorder='big') % (1 << 63)
