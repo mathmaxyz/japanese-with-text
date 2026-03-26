@@ -34,7 +34,6 @@ export default function SavedWordsView({ name }: { name: string }) {
 		const url = await createAnkiDeck(savedWords, deckName);
 		if (url) {
 			setBlobUrl(url);
-			console.log(blobUrl)
 		}
 	}
 
@@ -50,7 +49,8 @@ export default function SavedWordsView({ name }: { name: string }) {
 		setDeckName(e.target.value);
 	}
 
-	//TODO: Add css for name choosing
+	//TODO: Make the confirm button show loading feedback
+	//TODO: Maybe we should make this collapsed by default on desktop too and flash for feeback when a new word is added
 	return (
 		<div className={isOpen && isMobile ? "saved-words-wrapper sidebar-open-mobile" : "saved-words-wrapper"
 		}>

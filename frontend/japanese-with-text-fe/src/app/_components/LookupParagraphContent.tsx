@@ -31,7 +31,7 @@ export default function LookupParagraphContent({
 		setTranslation(translatedText);
 		setShowTranslation(!showTranslation);
 	};
-
+	//TODO: the arrow on this gets messed up and ends up in the wrong place if the window is resized
 	return (
 		<div className="lookup-paragraph">
 			{definedWords.map((word: DefinedWord, index: number) => (
